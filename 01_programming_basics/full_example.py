@@ -9,3 +9,4 @@ if metai.isnumeric():
         print(f"{metai} yra nekeliamieji")
 else:
     print("metai turi būti skaičius")
+print('bye!')
