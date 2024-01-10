@@ -28,7 +28,7 @@ class Recipe:
     
     def print_recipe(self):
         for index, ingredient in enumerate(self.ingredients, start=1):
-            print(index, ingredient)
+            print(f"{index}, {ingredient}")
 
 
 
@@ -62,10 +62,16 @@ class Fridge:
         if product is not None:
             self.contents.pop(product_id)
 
-    def check_recipe(self, recipe:Recipe):
-        pass
-
-
+    def check_recipe(self, recipe: Recipe):
+        for ingredient in recipe.ingredients:
+            product_id, _ = Fridge().check_product(ingredient.name)
+            if product_id is None:
+                print(f"{ingredient.name} was not found in the fridge")
+                print("Recipe is not craftable")
+                return False
+        print("Recipe is craftable")
+        return True
+ 
 def main():
     fridge = Fridge()
     recipe = Recipe()
@@ -80,7 +86,9 @@ recipe add- Add products to recipe
 recipe remove - Remove products from recipe
 recipe change - Change ingridient quantity of the recipe
 recipe print - Print current recipe
+recipe check - Check if recipe is craftable
 exit - Exit
+----------------------------------------------------------
               ''')
         choice = input("Your choice: ")
         if choice.startswith("exit"):
@@ -97,6 +105,7 @@ exit - Exit
             input_name = input("Input name: ")
             fridge.remove_product(input_name)
         elif choice.startswith("print"):
+            print("Current contents of the fridge:")
             fridge.print_contents()
         elif choice.startswith("recipe add"):
             input_recipe_name = input("Input product name: ")
@@ -111,9 +120,15 @@ exit - Exit
             input_ingridient_id = int(input("Input product ID: "))
             recipe.remove_ingredient(input_ingridient_id-1)
         elif choice.startswith("recipe print"):
+            print("Contents of the recipe:")
             recipe.print_recipe()
+        elif choice.startswith("recipe check"):
+            fridge.check_recipe(recipe)
         else:
             print("Bad choice, try again")
-            
+
+Fridge().add_product("milk", 1)
+Recipe().add_ingredient(Product("milk", 1))
+
 if __name__ == "__main__":
     main()
