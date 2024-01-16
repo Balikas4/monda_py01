@@ -118,12 +118,12 @@ class Fridge:
             print("Recipe is craftable")
             return True
     
-    def save_to_file(self, filename='fridge_contents.json'):
+    def save_to_file(self, filename=r'D:\CodeAcademy\monda_py01\08_working_with_files\fridge_contents.json'):
         data = [{'name': product.name, 'quantity': product.quantity, 'unit_of_measurement': product.unit_of_measurement} for product in self.contents]
         with open(filename, 'w') as file:
             json.dump(data, file, indent=2)
 
-    def load_from_file(self, filename='fridge_contents.json'):
+    def load_from_file(self, filename=r'D:\CodeAcademy\monda_py01\08_working_with_files\fridge_contents.json'):
         try:
             with open(filename, 'r') as file:
                 data = json.load(file)
@@ -136,7 +136,6 @@ class Fridge:
 def main():
     fridge = Fridge()
     recipe = Recipe()
-    fridge.load_from_file()
     while True:
         print('''
 -------------------- Main Fridge Menu --------------------
@@ -215,10 +214,8 @@ exit - Exit
 
 
 fridge = Fridge()
-fridge.add_product("milk", 1.1, "l")
-recipe = Recipe()
-recipe.add_ingredient(Product("milk", 1.1, "l"))
-
+fridge.load_from_file()
+print("Loading json file from fridge_contents")
 
 if __name__ == "__main__":
     main()

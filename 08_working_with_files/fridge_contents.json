@@ -1,17 +1,17 @@
 [
   {
     "name": "milk",
-    "quantity": 1.1,
+    "quantity": 1.0,
     "unit_of_measurement": "l"
   },
   {
-    "name": "milk",
-    "quantity": 1.1,
-    "unit_of_measurement": "l"
+    "name": "butter",
+    "quantity": 100.0,
+    "unit_of_measurement": "g"
   },
   {
-    "name": "milk",
-    "quantity": 1.1,
-    "unit_of_measurement": "l"
+    "name": "bread",
+    "quantity": 1.0,
+    "unit_of_measurement": "unit"
   }
 ]
